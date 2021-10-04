@@ -61,8 +61,15 @@ class MainActivity : AppCompatActivity() {
     {
         val text = resultsTV.text.toString()
         workingsTV.text = text
-        val expression = ExpressionBuilder(text).build()
-        val result = expression.evaluate()
-        resultsTV.text = result.toString()
+        try
+        {
+            val expression = ExpressionBuilder(text).build()
+            val result = expression.evaluate()
+            resultsTV.text = result.toString()
+        }
+        catch(ex: ArithmeticException)
+        {
+            resultsTV.text = ex.message
+        }
     }
 }
